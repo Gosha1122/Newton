@@ -1,17 +1,20 @@
 #ifndef MONOMIAL_H
 #define MONOMIAL_H
-#include <fraction.h>
+#include "complex.h"
 #include <iostream>
 
 class Monomial
 {
 public:
     Monomial();
-    Monomial(int power, Fraction k);
+    Monomial(int power, Complex k);
+    Monomial(const Monomial &m);
+    void operator=(Monomial m);
+
     int getPower() const;
     void setPower(int newPower);
-    Fraction getK() const;
-    void setK(const Fraction& newK);
+    Complex getK() const;
+    void setK(const Complex& newK);
     Monomial operator+(Monomial& m1);
     Monomial operator-(Monomial& m1);
     void operator+=(Monomial& m1);
@@ -23,10 +26,11 @@ public:
 
 private:
     int power;
-    Fraction k;
+    Complex k;
 };
 
-std::ostream &operator<<(std::ostream& out, Monomial &m);
+std::ostream &operator<<(std::ostream& out, const Monomial &m);
+std::ostream &operator<<(std::ostream& out, const Monomial &&m);
 
 
 #endif // MONOMIAL_H

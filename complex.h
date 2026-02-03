@@ -10,6 +10,7 @@ class Complex
 public:
     Complex();
     Complex(const Fraction& fRe, const Fraction& fIm);
+    Complex(const Fraction& re);
     Complex(const Complex& c);
     void operator=(const Complex& c);
 

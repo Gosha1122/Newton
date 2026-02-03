@@ -8,6 +8,12 @@ Complex::Complex(const Fraction &fRe, const Fraction &fIm)
     im = fIm;
 }
 
+Complex::Complex(const Fraction &re)
+{
+    this->re = re;
+    im = Fraction(0, 1);
+}
+
 Complex::Complex(const Complex &c)
 {
     re = c.getRe();
@@ -94,7 +100,9 @@ void Complex::operator/=(const Fraction& f1){
 
 std::ostream &operator<<(std::ostream &out, const Complex& c)
 {
-    return out << c.getRe() << " i * " << c.getIm();
+    out << '(' << c.getRe();
+    if(c.getIm().getUp() == 0) return out << ')';
+    return out << " + i * " << c.getIm() << ')';
 }
 
 std::istream &operator>>(std::istream &in, Complex& c)

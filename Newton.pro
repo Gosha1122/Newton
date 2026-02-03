@@ -6,7 +6,8 @@ SOURCES += \
         complex.cpp \
         fraction.cpp \
         main.cpp \
-        monomial.cpp
+        monomial.cpp \
+        polynom.cpp
 
 
 
@@ -14,4 +15,5 @@ SOURCES += \
 HEADERS += \
     complex.h \
     fraction.h \
-    monomial.h
+    monomial.h \
+    polynom.h

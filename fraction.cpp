@@ -2,8 +2,8 @@
 #include <numeric>
 
 
-Fraction::Fraction() {
-    shortValue();
+Fraction::Fraction() : up(0), down(1) {
+
 }
 
 Fraction::Fraction(long long a, unsigned long long b):up(a), down(b){
@@ -87,6 +87,8 @@ void Fraction::operator/=(const Fraction &f1)
 
 std::ostream &operator<<(std::ostream &out, const Fraction& a)
 {
+    if(a.getDown() == 1) return out << a.getUp();
+    if(a.getUp() == 0) return out << 0;
     return out << a.getUp() << " / " << a.getDown();
 }
 
