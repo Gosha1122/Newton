@@ -4,15 +4,124 @@ Complex::Complex() {}
 
 Complex::Complex(const Fraction &fRe, const Fraction &fIm)
 {
-
+    re = fRe;
+    im = fIm;
 }
 
 Complex::Complex(const Complex &c)
 {
-
+    re = c.getRe();
+    im = c.getIm();
 }
 
 void Complex::operator=(const Complex &c)
 {
+    re = c.getRe();
+    im = c.getIm();
+}
 
+Complex Complex::getConjugate()
+{
+    return Complex(re, -im);
+}
+
+long double Complex::getNormal()
+{
+    return sqrt((re * re).getDecimalValue() + (im * im).getDecimalValue());
+}
+
+Complex Complex::operator+(const Complex &f1)
+{
+    return Complex(re + f1.getRe(), im + f1.getIm());
+}
+
+Complex Complex::operator-(const Complex &f1)
+{
+    return Complex(re - f1.getRe(), im - f1.getIm());
+}
+
+void Complex::operator+=(const Complex &f1)
+{
+    re += f1.getRe();
+    im += f1.getIm();
+}
+
+void Complex::operator-=(const Complex &f1)
+{
+    re -= f1.getRe();
+    im -= f1.getIm();
+}
+
+Complex Complex::operator*(const Complex &f1)
+{
+    return Complex(re * f1.getRe() - im * f1.getIm(), re * f1.getIm() + im * f1.getRe());
+}
+
+Complex Complex::operator*(const Fraction& f1){
+    return Complex(re * f1, im * f1);
+}
+
+Complex Complex::operator/(const Complex &f1)
+{
+    return Complex((re * f1.getRe() + im * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm()), (im * f1.getRe() - re * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm()));
+}
+
+Complex Complex::operator/(const Fraction& f1){
+    return Complex(re / f1, im / f1);
+}
+
+void Complex::operator*=(const Complex &f1)
+{
+    re = re * f1.getRe() - im * f1.getIm();
+    im = re * f1.getIm() + im * f1.getRe();
+}
+
+void Complex::operator*=(const Fraction& f1){
+    re *= f1;
+    im *= f1;
+}
+
+void Complex::operator/=(const Complex &f1)
+{
+    re = (re * f1.getRe() + im * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+    im = (im * f1.getRe() - re * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+}
+
+void Complex::operator/=(const Fraction& f1){
+    re /= f1;
+    im /= f1;
+}
+
+std::ostream &operator<<(std::ostream &out, const Complex& c)
+{
+    return out << c.getRe() << " i * " << c.getIm();
+}
+
+std::istream &operator>>(std::istream &in, Complex& c)
+{
+    Fraction nRe, nIm;
+    in >> nRe >> nIm;
+    c.setRe(nRe);
+    c.setIm(nIm);
+    return in;
+}
+
+Fraction Complex::getRe() const
+{
+    return re;
+}
+
+void Complex::setRe(const Fraction &newRe)
+{
+    re = newRe;
+}
+
+Fraction Complex::getIm() const
+{
+    return im;
+}
+
+void Complex::setIm(const Fraction &newIm)
+{
+    im = newIm;
 }
