@@ -100,8 +100,8 @@ void Complex::operator/=(const Fraction& f1){
 
 std::ostream &operator<<(std::ostream &out, const Complex& c)
 {
+    if(c.getIm().getUp() == 0) return out << c.getRe();
     out << '(' << c.getRe();
-    if(c.getIm().getUp() == 0) return out << ')';
     return out << " + i * " << c.getIm() << ')';
 }
 
