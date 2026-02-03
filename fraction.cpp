@@ -68,6 +68,7 @@ Fraction Fraction::operator*(const Fraction &f1)
 
 Fraction Fraction::operator/(const Fraction &f1)
 {
+    if(f1.getUp() == 0) return Fraction(1, 1);
     return Fraction(up * f1.getDown(), down * f1.getUp());
 }
 
@@ -80,6 +81,7 @@ void Fraction::operator*=(const Fraction &f1)
 
 void Fraction::operator/=(const Fraction &f1)
 {
+    if(f1.getUp() == 0) return;
     up *= f1.getDown();
     down *= f1.getUp();
     shortValue();
@@ -128,7 +130,8 @@ void Fraction::setDown(unsigned long long newDown)
 
 void Fraction::shortValue()
 {
-    unsigned long long d = std::gcd(up, down);
+    unsigned long long d = std::gcd(std::abs(up), down);
+    if(d < 1) d = 1;
     up /= d;
     down /= d;
 }

@@ -82,8 +82,10 @@ Complex Complex::operator/(const Fraction& f1){
 
 void Complex::operator*=(const Complex &f1)
 {
-    re = re * f1.getRe() - im * f1.getIm();
-    im = re * f1.getIm() + im * f1.getRe();
+    Fraction nre = re * f1.getRe() - im * f1.getIm();
+    Fraction nim = re * f1.getIm() + im * f1.getRe();
+    re = nre;
+    im = nim;
 }
 
 void Complex::operator*=(const Fraction& f1){
@@ -93,8 +95,10 @@ void Complex::operator*=(const Fraction& f1){
 
 void Complex::operator/=(const Complex &f1)
 {
-    re = (re * f1.getRe() + im * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
-    im = (im * f1.getRe() - re * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+    Fraction nre = (re * f1.getRe() + im * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+    Fraction nim = (im * f1.getRe() - re * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+    re = nre;
+    im = nim;
 }
 
 bool Complex::operator==(const Complex &c1)

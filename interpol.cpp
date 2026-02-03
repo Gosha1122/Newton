@@ -82,7 +82,7 @@ Function Interpol::getFunction(int first, int second)
             functions[std::make_pair(first, second)] = {first, second, points.at(first).second};
             return {first, second, points.at(first).second};
         }
-        functions[std::make_pair(first, second)] = {first, second, (getFunction(first + 1, second).value - getFunction(first, second - 1).value) / Fraction(second - first, 1)};
+        functions[std::make_pair(first, second)] = {first, second, (getFunction(first + 1, second).value - getFunction(first, second - 1).value) / (points[second].first - points[first].first)};
         return functions[std::make_pair(first, second)];
     }
     return functions[std::make_pair(first, second)];

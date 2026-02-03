@@ -33,12 +33,13 @@ public:
     int getN() const;
     void setN(int newN);
 
+    Function getFunction(int first, int second);
 private:
     int n = 0;
     QList<std::pair<Complex, Complex>> points;
     QMap<std::pair<int, int>, Function> functions;
 
-    Function getFunction(int first, int second);
+
 };
 
 #endif // INTERPOL_H
