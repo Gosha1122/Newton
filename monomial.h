@@ -20,8 +20,10 @@ public:
     void operator+=(Monomial& m1);
     void operator-=(Monomial &m1);
     Monomial operator*(Monomial& m1);
+    Monomial operator*(Complex& c1);
     Monomial operator/(Monomial& m1);
     void operator*=(Monomial& m1);
+    void operator*=(Complex& c1);
     void operator/=(Monomial& m1);
 
 private:

@@ -3,13 +3,14 @@
 
 #include "fraction.h"
 #include "complex.h"
+#include "polynom.h"
 
 #include <QMap>
 
 struct Function{
-    int start;
-    int finish;
-    Fraction value;
+    int start      = 0;
+    int finish     = 0;
+    Complex value = Complex();
 };
 
 std::ostream& operator<<(std::ostream& out, const Function& f);
@@ -18,20 +19,26 @@ class Interpol
 {
 public:
     Interpol();
-    Interpol(const QMap<Complex, Complex>& points);
+    Interpol(const QList<std::pair<Complex, Complex>>& points);
     Interpol(const Interpol& in);
     void operator=(const Interpol& in);
 
+    Polynom calculate(const QList<std::pair<Complex, Complex>>& points);
+    Polynom calculate();
 
-    QMap<Complex, Complex> getPoints() const;
-    void setPoints(const QMap<Complex, Complex> &newPoints);
+
+    QList<std::pair<Complex, Complex>> getPoints() const;
+    void setPoints(const QList<std::pair<Complex, Complex>> &newPoints);
 
     int getN() const;
     void setN(int newN);
 
 private:
     int n = 0;
-    QMap<Complex, Complex> points;
+    QList<std::pair<Complex, Complex>> points;
+    QMap<std::pair<int, int>, Function> functions;
+
+    Function getFunction(int first, int second);
 };
 
 #endif // INTERPOL_H

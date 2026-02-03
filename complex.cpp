@@ -46,6 +46,10 @@ Complex Complex::operator-(const Complex &f1)
     return Complex(re - f1.getRe(), im - f1.getIm());
 }
 
+Complex Complex::operator-() const{
+    return Complex(-re, -im);
+}
+
 void Complex::operator+=(const Complex &f1)
 {
     re += f1.getRe();
@@ -91,6 +95,11 @@ void Complex::operator/=(const Complex &f1)
 {
     re = (re * f1.getRe() + im * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
     im = (im * f1.getRe() - re * f1.getIm()) / (f1.getRe() * f1.getRe() + f1.getIm() * f1.getIm());
+}
+
+bool Complex::operator==(const Complex &c1)
+{
+    return (re == c1.getRe() && im == c1.getIm());
 }
 
 void Complex::operator/=(const Fraction& f1){

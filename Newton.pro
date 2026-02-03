@@ -16,6 +16,7 @@ SOURCES += \
 HEADERS += \
     complex.h \
     fraction.h \
+    interpol.h \
     monomial.h \
     polynom.h
     interpol.h

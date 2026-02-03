@@ -15,9 +15,10 @@ public:
 
     Polynom operator+(Polynom& m1);
     Polynom operator-(Polynom& m1);
-    void operator+=(Polynom& m1);
+    void operator+=(const Polynom& m1);
     void operator-=(Polynom& m1);
     Polynom operator*(Polynom& m1);
+    Polynom operator*(Complex& c1);
     void operator*=(Polynom& m1);
 
     QList<Monomial> getMonomials() const;
