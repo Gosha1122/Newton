@@ -24,6 +24,8 @@ void Fraction::operator=(const Fraction &f)
     shortValue();
 }
 
+
+
 long double Fraction::getDecimalValue()
 {
     return static_cast<double>(up) / down;
@@ -94,6 +96,7 @@ std::istream &operator>>(std::istream &in, Fraction& a)
     in >> up >> down;
     a.setUp(up);
     a.setDown(down);
+    return in;
 }
 
 long long Fraction::getUp() const

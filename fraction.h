@@ -13,6 +13,8 @@ public:
     void operator=(const Fraction& f);
 
 
+    
+    
     long double getDecimalValue();
 
     Fraction operator+(const Fraction& f1);
@@ -24,10 +26,10 @@ public:
     Fraction operator/(const Fraction& f1);
     void operator*=(const Fraction& f1);
     void operator/=(const Fraction& f1);
-
+    
     long long getUp() const;
     void setUp(long long newUp);
-
+    
     unsigned long long getDown() const;
     void setDown(unsigned long long newDown);
 
@@ -40,5 +42,6 @@ private:
 
 std::ostream &operator<<(std::ostream &out, const Fraction& a);
 std::istream &operator>>(std::istream &in, Fraction& a);
+
 
 #endif // FRACTION_H

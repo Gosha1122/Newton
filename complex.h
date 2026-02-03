@@ -1,7 +1,9 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
+
 #include "fraction.h"
+
 
 class Complex
 {
@@ -43,5 +45,7 @@ private:
 
 std::ostream &operator<<(std::ostream &out, const Complex& c);
 std::istream &operator>>(std::istream &in, Complex& c);
+
+
 
 #endif // COMPLEX_H
