@@ -5,6 +5,7 @@ CONFIG -= app_bundle
 SOURCES += \
         complex.cpp \
         fraction.cpp \
+        interpol.cpp \
         main.cpp \
         monomial.cpp
 
@@ -14,4 +15,5 @@ SOURCES += \
 HEADERS += \
     complex.h \
     fraction.h \
+    interpol.h \
     monomial.h

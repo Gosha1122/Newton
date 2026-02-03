@@ -35,7 +35,7 @@ public:
 
 private:
     long long up = 0;
-    unsigned long long down = 0;
+    unsigned long long down = 1;
 
     void shortValue();
 };
