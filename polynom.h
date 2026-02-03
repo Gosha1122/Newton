@@ -16,9 +16,15 @@ public:
     Polynom operator+(Polynom& m1);
     Polynom operator-(Polynom& m1);
     void operator+=(Polynom& m1);
+    void operator+=(Polynom &&m1);
     void operator-=(Polynom& m1);
-    Polynom operator*(Polynom& m1);
+    Polynom operator*(Polynom &m1);
+    Polynom operator*(Complex& c1);
+    Polynom operator/(Complex& c1);
     void operator*=(Polynom& m1);
+    void operator*=(Polynom &&m1);
+    void operator*=(Complex &m1);
+    void operator/=(Complex &c1);
 
     QList<Monomial> getMonomials() const;
     void setMonomials(const QList<Monomial> &newMonomials);

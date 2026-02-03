@@ -1,10 +1,9 @@
 #ifndef INTERPOL_H
 #define INTERPOL_H
 
-#include "fraction.h"
-#include "complex.h"
+#include "polynom.h"
 
-#include <QMap>
+#include <QList>
 
 struct Function{
     int start;
@@ -18,20 +17,21 @@ class Interpol
 {
 public:
     Interpol();
-    Interpol(const QMap<Complex, Complex>& points);
+    Interpol(const QList<std::pair<Complex, Complex>>& points);
     Interpol(const Interpol& in);
     void operator=(const Interpol& in);
 
 
-    QMap<Complex, Complex> getPoints() const;
-    void setPoints(const QMap<Complex, Complex> &newPoints);
+    QList<std::pair<Complex, Complex>> getPoints() const;
+    void setPoints(const QList<std::pair<Complex, Complex>> &newPoints);
+    Polynom calculate();
 
     int getN() const;
     void setN(int newN);
 
 private:
     int n = 0;
-    QMap<Complex, Complex> points;
+    QList<std::pair<Complex, Complex>> points;
 };
 
 #endif // INTERPOL_H

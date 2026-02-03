@@ -75,21 +75,36 @@ Monomial Monomial::operator*(Monomial &m1)
 {
     return Monomial(m1.getPower() + power, m1.getK() * k);
 }
+Monomial Monomial::operator*(Complex &c1)
+{
+    return Monomial(power, k * c1);
+}
 Monomial Monomial::operator/(Monomial &m1)
 {
     return Monomial(power - m1.getPower(), k / m1.getK());
+}
+Monomial Monomial::operator/(Complex &c1)
+{
+    return Monomial(power, k / c1);
 }
 void Monomial::operator*=(Monomial &m1)
 {
     power += m1.power;
     k *= m1.getK();
 }
+void Monomial::operator*=(Complex &c1)
+{
+    k *= c1;
+}
 void Monomial::operator/=(Monomial &m1)
 {
     power -= m1.power;
     k /= m1.getK();
 }
-
+void Monomial::operator/=(Complex &c1)
+{
+    k /= c1;
+}
 
 std::ostream &operator<<(std::ostream& out, const Monomial &m) {
     if (m.getPower() == 0) {

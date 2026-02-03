@@ -21,6 +21,7 @@ public:
 
     Complex operator+(const Complex& f1);
     Complex operator-(const Complex& f1);
+    Complex operator-() const;
     void operator+=(const Complex& f1);
     void operator-=(const Complex& f1);
     Complex operator*(const Complex& f1);

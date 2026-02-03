@@ -1,18 +1,17 @@
 #include <iostream>
-#include "Polynom.h"
+#include "lagrange.h"
+
 using namespace std;
 
 int main()
 {
-    Polynom P(QList({Monomial(2, Complex(Fraction(1, 1))),
-                    Monomial(1, Complex(Fraction(1, 1))),
-                    Monomial(0, Complex(Fraction(1, 1)))}));
-    Polynom Q(QList({Monomial(2, Complex(Fraction(1, 1))),
-                    Monomial(1, Complex(Fraction(1, 1))),
-                     Monomial(0, Complex(Fraction(1, 1)))}));
-    cout << P << " " << Q << endl;
-    cout << P * Q << endl;
-    cout << P - Q << endl;
-    cout << P + Q << endl;
+    Lagrange to_do;
+    QList<pair<Complex, Complex>> list = {{Complex(Fraction(0, 1), Fraction(-1, 1)), Complex(Fraction(0, 1))},
+                                          {Complex(Fraction(0, 1)), Complex(Fraction(2, 1))},
+                                          {Complex(Fraction(1, 1)), Complex(Fraction(3, 1))},
+                                          {Complex(Fraction(2, 1)), Complex(Fraction(5, 1))}
+                                          };
+    to_do.setPoints(list);
+    cout << to_do.calculate() << endl;
     return 0;
 }

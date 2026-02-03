@@ -70,6 +70,21 @@ void Polynom::operator+=(Polynom &m1)
     }
     *this = Polynom(monomials);
 }
+void Polynom::operator+=(Polynom &&m1)
+{
+    QMap<int, Complex> monomial_map;
+    for (Monomial& m : monomials) {
+        monomial_map[m.getPower()] += m.getK();
+    }
+    for (Monomial& m : m1.getMonomials()) {
+        monomial_map[m.getPower()] += m.getK();
+    }
+    QList<Monomial> monomials;
+    for (auto iterator = monomial_map.cbegin(); iterator != monomial_map.cend(); iterator++) {
+        monomials.append(Monomial(iterator.key(), iterator.value()));
+    }
+    *this = Polynom(monomials);
+}
 
 void Polynom::operator-=(Polynom &m1)
 {
@@ -103,6 +118,26 @@ Polynom Polynom::operator*(Polynom &m1)
     return Polynom(monomials);
 }
 
+Polynom Polynom::operator*(Complex &c1)
+{
+    QList<Monomial> list = monomials;
+    for (int i = 0; i < list.count(); i++) {
+        list[i] *= c1;
+    }
+
+    return Polynom(list);
+}
+Polynom Polynom::operator/(Complex &c1)
+{
+    QList<Monomial> list = monomials;
+    for (int i = 0; i < list.count(); i++) {
+        list[i] /= c1;
+    }
+
+    return Polynom(list);
+}
+
+
 void Polynom::operator*=(Polynom &m1)
 {
     QMap<int, Complex> monomial_map;
@@ -118,7 +153,34 @@ void Polynom::operator*=(Polynom &m1)
     }
     *this = Polynom(monomials);
 }
+void Polynom::operator*=(Polynom &&m1)
+{
+    QMap<int, Complex> monomial_map;
+    for (Monomial& m2 : monomials) {
+        for (Monomial& m3 : m1.getMonomials()) {
+            monomial_map[m2.getPower() + m3.getPower()] += m2.getK() * m3.getK();
+        }
+    }
 
+    QList<Monomial> monomials;
+    for (auto iterator = monomial_map.cbegin(); iterator != monomial_map.cend(); iterator++) {
+        monomials.append(Monomial(iterator.key(), iterator.value()));
+    }
+    *this = Polynom(monomials);
+}
+
+void Polynom::operator*=(Complex &c1)
+{
+    for (int i = 0; i < monomials.count(); i++) {
+        monomials[i] *= c1;
+    }
+}
+void Polynom::operator/=(Complex &c1)
+{
+    for (int i = 0; i < monomials.count(); i++) {
+        monomials[i] /= c1;
+    }
+}
 
 QList<Monomial> Polynom::getMonomials() const
 {

@@ -6,6 +6,7 @@ SOURCES += \
         complex.cpp \
         fraction.cpp \
         interpol.cpp \
+        lagrange.cpp \
         main.cpp \
         monomial.cpp \
         polynom.cpp
@@ -16,6 +17,7 @@ SOURCES += \
 HEADERS += \
     complex.h \
     fraction.h \
+    lagrange.h \
     monomial.h \
-    polynom.h
+    polynom.h \
     interpol.h

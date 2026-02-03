@@ -16,7 +16,7 @@ Interpol::Interpol() {
 
 }
 
-Interpol::Interpol(const QMap<Complex, Complex>& points): points(points)
+Interpol::Interpol(const QList<std::pair<Complex, Complex>>& points): points(points)
 {
 
 }
@@ -33,14 +33,19 @@ void Interpol::operator=(const Interpol &in)
     n = in.getN();
 }
 
-QMap<Complex, Complex> Interpol::getPoints() const
+QList<std::pair<Complex, Complex>> Interpol::getPoints() const
 {
     return points;
 }
 
-void Interpol::setPoints(const QMap<Complex, Complex> &newPoints)
+void Interpol::setPoints(const QList<std::pair<Complex, Complex>> &newPoints)
 {
     points = newPoints;
+}
+
+Polynom Interpol::calculate()
+{
+    return Polynom();
 }
 
 int Interpol::getN() const
