@@ -93,6 +93,11 @@ void Fraction::operator/=(const Fraction &f1)
     shortValue();
 }
 
+bool Fraction::operator==(const Fraction &f1)
+{
+    return (up == f1.getUp() && down == f1.getDown());
+}
+
 std::ostream &operator<<(std::ostream &out, const Fraction& a)
 {
     if(a.getDown() == 1) return out << a.getUp();

@@ -55,7 +55,7 @@ Polynom Polynom::operator-(Polynom &m1)
     return Polynom(monomials);
 }
 
-void Polynom::operator+=(Polynom &m1)
+void Polynom::operator+=(const Polynom &m1)
 {
     QMap<int, Complex> monomial_map;
     for (Monomial& m : monomials) {
@@ -144,6 +144,7 @@ Polynom Polynom::operator*(Complex &c1)
 
     return Polynom(list);
 }
+
 Polynom Polynom::operator/(Complex &c1)
 {
     QList<Monomial> list = monomials;
@@ -154,6 +155,14 @@ Polynom Polynom::operator/(Complex &c1)
     return Polynom(list);
 }
 
+
+Polynom Polynom::operator*(const Complex& c1){
+    QList<Monomial> monomials = this->monomials;
+    for(int i = 0; i < monomials.count(); i++){
+        monomials[i] *= c1;
+    }
+    return Polynom(monomials, power);
+}
 
 void Polynom::operator*=(Polynom &m1)
 {

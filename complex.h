@@ -32,6 +32,7 @@ public:
     void operator*=(const Fraction& f1);
     void operator/=(const Complex& f1);
     void operator/=(const Fraction& f1);
+    bool operator==(const Complex& c1);
 
     Fraction getRe() const;
     void setRe(const Fraction &newRe);

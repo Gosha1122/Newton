@@ -18,6 +18,7 @@ HEADERS += \
     complex.h \
     fraction.h \
     lagrange.h \
+    interpol.h \
     monomial.h \
     polynom.h \
     interpol.h

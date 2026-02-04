@@ -26,6 +26,7 @@ public:
     Fraction operator/(const Fraction& f1);
     void operator*=(const Fraction& f1);
     void operator/=(const Fraction& f1);
+    bool operator==(const Fraction& f1);
     
     long long getUp() const;
     void setUp(long long newUp);

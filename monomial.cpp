@@ -104,10 +104,11 @@ void Monomial::operator*=(Monomial &m1)
     power += m1.power;
     k *= m1.getK();
 }
-void Monomial::operator*=(Complex &c1)
+void Monomial::operator*=(const Complex &c1)
 {
     k *= c1;
 }
+
 void Monomial::operator/=(Monomial &m1)
 {
     power -= m1.power;

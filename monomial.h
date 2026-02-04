@@ -24,7 +24,7 @@ public:
     Monomial operator/(Monomial& m1);
     Monomial operator/(Complex& m1);
     void operator*=(Monomial& m1);
-    void operator*=(Complex &c1);
+    void operator*=(const Complex &c1);
     void operator/=(Monomial& m1);
     void operator/=(Complex &c1);
 
