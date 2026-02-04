@@ -6,7 +6,7 @@ Fraction::Fraction() {
 
 }
 
-Fraction::Fraction(long long a, unsigned long long b) : up(a), down(b){
+Fraction::Fraction(long long a, long long b) : up(a), down(b){
     shortValue();
 }
 
@@ -111,19 +111,19 @@ void Fraction::setUp(long long newUp)
     up = newUp;
 }
 
-unsigned long long Fraction::getDown() const
+long long Fraction::getDown() const
 {
     return down;
 }
 
-void Fraction::setDown(unsigned long long newDown)
+void Fraction::setDown(long long newDown)
 {
     down = newDown;
 }
 
 void Fraction::shortValue()
 {
-    unsigned long long d = std::gcd(std::abs(up), down);
+    long long d = std::gcd(std::abs(up), down);
     up /= d;
     down /= d;
 }

@@ -23,7 +23,6 @@ Polynom Lagrange::P_i(int ind) {
 Polynom Lagrange::calculate() {
     Polynom P;
     for (int i = 0; i < n; i++) {
-        std::cout << P_i(i) << std::endl;
         P += P_i(i) * points[i].second;
     }
     return P;

@@ -73,10 +73,22 @@ void Monomial::operator-=(Monomial &m1)
 
 Monomial Monomial::operator*(Monomial &m1)
 {
+    if (m1.k.getRe().getUp() == 0 && m1.k.getIm().getUp() == 0) {
+        return Monomial();
+    }
+    if (k.getRe().getUp() == 0 && k.getIm().getUp() == 0) {
+        return Monomial();
+    }
     return Monomial(m1.getPower() + power, m1.getK() * k);
 }
 Monomial Monomial::operator*(Complex &c1)
 {
+    if (c1.getRe().getUp() == 0 && c1.getIm().getUp() == 0) {
+        return Monomial();
+    }
+    if (k.getRe().getUp() == 0 && k.getIm().getUp() == 0) {
+        return Monomial();
+    }
     return Monomial(power, k * c1);
 }
 Monomial Monomial::operator/(Monomial &m1)

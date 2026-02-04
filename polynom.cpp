@@ -99,6 +99,20 @@ void Polynom::operator-=(Polynom &m1)
     for (auto iterator = monomial_map.cbegin(); iterator != monomial_map.cend(); iterator++) {
         monomials.append(Monomial(iterator.key(), iterator.value()));
     }
+}
+void Polynom::operator-=(Polynom &&m1)
+{
+    QMap<int, Complex> monomial_map;
+    for (Monomial& m : monomials) {
+        monomial_map[m.getPower()] += m.getK();
+    }
+    for (Monomial& m : m1.getMonomials()) {
+        monomial_map[m.getPower()] -= m.getK();
+    }
+    QList<Monomial> monomials;
+    for (auto iterator = monomial_map.cbegin(); iterator != monomial_map.cend(); iterator++) {
+        monomials.append(Monomial(iterator.key(), iterator.value()));
+    }
 
 }
 
@@ -120,6 +134,9 @@ Polynom Polynom::operator*(Polynom &m1)
 
 Polynom Polynom::operator*(Complex &c1)
 {
+    if (c1.getRe().getUp() == 0 && c1.getIm().getUp() == 0) {
+        return Polynom();
+    }
     QList<Monomial> list = monomials;
     for (int i = 0; i < list.count(); i++) {
         list[i] *= c1;
@@ -171,7 +188,13 @@ void Polynom::operator*=(Polynom &&m1)
 
 void Polynom::operator*=(Complex &c1)
 {
+    if (c1.getRe().getUp() == 0 && c1.getIm().getUp() == 0) {
+        monomials.clear();
+        power = 0;
+        return;
+    }
     for (int i = 0; i < monomials.count(); i++) {
+
         monomials[i] *= c1;
     }
 }

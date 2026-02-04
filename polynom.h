@@ -18,6 +18,7 @@ public:
     void operator+=(Polynom& m1);
     void operator+=(Polynom &&m1);
     void operator-=(Polynom& m1);
+    void operator-=(Polynom &&m1);
     Polynom operator*(Polynom &m1);
     Polynom operator*(Complex& c1);
     Polynom operator/(Complex& c1);
