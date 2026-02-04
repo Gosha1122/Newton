@@ -6,7 +6,7 @@ Fraction::Fraction() {
 
 }
 
-Fraction::Fraction(long long a, long long b) : up(a), down(b){
+Fraction::Fraction(long long a, unsigned long long b) : up(a), down(b){
     shortValue();
 }
 
@@ -68,6 +68,9 @@ Fraction Fraction::operator*(const Fraction &f1)
 
 Fraction Fraction::operator/(const Fraction &f1)
 {
+    if (f1.getUp() < 0) {
+        return Fraction(up * -f1.getDown(), down * (-f1.getUp()));
+    }
     return Fraction(up * f1.getDown(), down * f1.getUp());
 }
 
@@ -80,8 +83,13 @@ void Fraction::operator*=(const Fraction &f1)
 
 void Fraction::operator/=(const Fraction &f1)
 {
-    up *= f1.getDown();
-    down *= f1.getUp();
+    if (f1.getUp() < 0) {
+        up *= (-f1.getDown());
+        down *= (-f1.getUp());
+    } else {
+        up *= f1.getDown();
+        down *= f1.getUp();
+    }
     shortValue();
 }
 
@@ -109,16 +117,18 @@ long long Fraction::getUp() const
 void Fraction::setUp(long long newUp)
 {
     up = newUp;
+    shortValue();
 }
 
-long long Fraction::getDown() const
+unsigned long long Fraction::getDown() const
 {
     return down;
 }
 
-void Fraction::setDown(long long newDown)
+void Fraction::setDown(unsigned long long newDown)
 {
     down = newDown;
+    shortValue();
 }
 
 void Fraction::shortValue()

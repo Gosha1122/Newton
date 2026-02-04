@@ -8,7 +8,7 @@ class Fraction
 {
 public:
     Fraction();
-    Fraction(long long a, long long b);
+    Fraction(long long a, unsigned long long b);
     Fraction(const Fraction& f);
     void operator=(const Fraction& f);
 
@@ -30,12 +30,12 @@ public:
     long long getUp() const;
     void setUp(long long newUp);
     
-    long long getDown() const;
-    void setDown(long long newDown);
+    unsigned long long getDown() const;
+    void setDown(unsigned long long newDown);
 
 private:
     long long up = 0;
-    long long down = 1;
+    unsigned long long down = 1;
 
     void shortValue();
 };
