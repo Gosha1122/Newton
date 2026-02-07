@@ -234,6 +234,16 @@ void Polynom::setPower(int newPower)
     power = newPower;
 }
 
+QString Polynom::getText()
+{
+    QString otv = "";
+    for (int ind = 0; ind < monomials.size() - 1; ind++) {
+        otv += (monomials[ind].getText() + " + ");
+    }
+    otv += monomials[monomials.size() - 1].getText();
+    return otv;
+}
+
 std::ostream &operator<<(std::ostream& out, Polynom& P) {
     for (int ind = 0; ind < P.getMonomials().size() - 1; ind++) {
         out << P.getMonomials().at(ind) << " + ";

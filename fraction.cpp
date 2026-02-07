@@ -136,6 +136,12 @@ void Fraction::setDown(unsigned long long newDown)
     shortValue();
 }
 
+QString Fraction::getText()
+{
+    if(down == 1) return QString::number(up);
+    return QString::number(up) + "/" + QString::number(down);
+}
+
 void Fraction::shortValue()
 {
     long long d = std::gcd(std::abs(up), down);

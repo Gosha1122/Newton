@@ -2,6 +2,7 @@
 #define MONOMIAL_H
 #include "complex.h"
 #include <iostream>
+#include <QString>
 
 class Monomial
 {
@@ -27,6 +28,8 @@ public:
     void operator*=(const Complex &c1);
     void operator/=(Monomial& m1);
     void operator/=(Complex &c1);
+
+    QString getText();
 
 private:
     int power;

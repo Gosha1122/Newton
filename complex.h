@@ -3,7 +3,7 @@
 
 
 #include "fraction.h"
-
+#include <QString>
 
 class Complex
 {
@@ -39,6 +39,8 @@ public:
 
     Fraction getIm() const;
     void setIm(const Fraction &newIm);
+
+    QString getText();
 
 private:
     Fraction re = Fraction();

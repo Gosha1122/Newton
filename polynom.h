@@ -35,6 +35,8 @@ public:
     int getPower() const;
     void setPower(int newPower);
 
+    QString getText();
+
 private:
     QList<Monomial> monomials;
     int power;

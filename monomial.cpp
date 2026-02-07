@@ -114,6 +114,21 @@ void Monomial::operator/=(Monomial &m1)
     power -= m1.power;
     k /= m1.getK();
 }
+
+QString Monomial::getText()
+{
+    QString otv = "";
+    if (getPower() == 0) {
+        otv += k.getText();
+    }
+    else if (getPower() == 1) {
+        otv += k.getText() + " * x";
+    }
+    else {
+        otv += k.getText() + " * x ^ " + QString::number(power);
+    }
+    return otv;
+}
 void Monomial::operator/=(Complex &c1)
 {
     k /= c1;

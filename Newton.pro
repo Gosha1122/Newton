@@ -1,6 +1,7 @@
 TEMPLATE = app
 CONFIG += console c++17
 CONFIG -= app_bundle
+QT += widgets
 
 SOURCES += \
         complex.cpp \
@@ -9,7 +10,8 @@ SOURCES += \
         lagrange.cpp \
         main.cpp \
         monomial.cpp \
-        polynom.cpp
+        polynom.cpp \
+        widget.cpp
 
 
 
@@ -21,4 +23,8 @@ HEADERS += \
     interpol.h \
     monomial.h \
     polynom.h \
-    interpol.h
+    interpol.h \
+    widget.h
+
+FORMS += \
+    widget.ui

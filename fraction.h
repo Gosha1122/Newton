@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <QString>
 
 class Fraction
 {
@@ -33,6 +34,8 @@ public:
     
     unsigned long long getDown() const;
     void setDown(unsigned long long newDown);
+
+    QString getText();
 
 private:
     long long up = 0;

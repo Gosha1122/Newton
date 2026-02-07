@@ -146,3 +146,15 @@ void Complex::setIm(const Fraction &newIm)
 {
     im = newIm;
 }
+
+QString Complex::getText()
+{
+    QString otv = "";
+    if(getIm().getUp() == 0){
+        otv += re.getText();
+        return otv;
+    }
+    otv += '(' + re.getText();
+    otv += " + i * " + im.getText() + ')';
+    return otv;
+}
