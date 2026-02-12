@@ -14,10 +14,17 @@ public:
     QList<std::pair<Complex, Complex> > getPoints() const;
     void setPoints(const QList<std::pair<Complex, Complex>> &newPoints);
 
+    QString getLString();
+
+
+    Polynom *getPol() const;
 
 private:
     QList<std::pair<Complex, Complex>> points;
     int n;
+
+    QString LString = "";
+    Polynom* pol = nullptr;
 };
 
 #endif // LAGRANGE_H

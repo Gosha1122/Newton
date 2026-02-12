@@ -1,0 +1,11 @@
+release/complex.o
+release/fraction.o
+release/interpol.o
+release/lagrange.o
+release/main.o
+release/monomial.o
+release/pointdialog.o
+release/polynom.o
+release/widget.o
+release/moc_pointdialog.o
+release/moc_widget.o

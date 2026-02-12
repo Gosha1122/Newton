@@ -37,6 +37,8 @@ public:
 
     QString getText();
 
+    Complex getPointValue(const Complex& p);
+
 private:
     QList<Monomial> monomials;
     int power;

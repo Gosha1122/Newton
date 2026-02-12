@@ -46,6 +46,8 @@ Polynom Interpol::calculate()
         }
         otv += p * f.value;
     }
+    if(pol != nullptr) delete pol;
+    pol = new Polynom(otv);
     return otv;
 }
 
@@ -81,4 +83,31 @@ Function Interpol::getFunction(int first, int second)
         return functions[std::make_pair(first, second)];
     }
     return functions[std::make_pair(first, second)];
+}
+
+Polynom *Interpol::getPol() const
+{
+    return pol;
+}
+
+QString Interpol::getFunctionStr()
+{
+    QString otv;
+    for(int i = 0; i < n; i++){
+        otv += functions[std::make_pair(0, i)].getText() + '\n';
+    }
+    return otv;
+}
+
+QString Function::getText()
+{
+    QString otv = "";
+    otv += "f(";
+    for(int i = start; i < finish + 1; i++){
+        otv += "x_" + QString::number(i);
+        if(i != finish) otv += ", ";
+    }
+    otv += ") = ";
+    otv += value.getText();
+    return otv;
 }

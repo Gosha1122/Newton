@@ -23,8 +23,12 @@ Polynom Lagrange::P_i(int ind) {
 Polynom Lagrange::calculate() {
     Polynom P;
     for (int i = 0; i < n; i++) {
-        P += P_i(i) * points[i].second;
+        Polynom p = P_i(i);
+        P += p * points[i].second;
+        LString += "L_" + QString::number(i) + ": " + p.getText() + '\n';
     }
+    if(pol != nullptr) delete pol;
+    pol = new Polynom(P);
     return P;
 }
 
@@ -39,4 +43,13 @@ void Lagrange::setPoints(const QList<std::pair<Complex, Complex>> &newPoints)
     n = points.size();
 }
 
+QString Lagrange::getLString()
+{
+    return LString;
+}
+
+Polynom *Lagrange::getPol() const
+{
+    return pol;
+}
 

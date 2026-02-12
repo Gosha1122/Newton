@@ -118,16 +118,27 @@ void Monomial::operator/=(Monomial &m1)
 QString Monomial::getText()
 {
     QString otv = "";
+    if(k == Complex(Fraction(0, 1))) return "";
     if (getPower() == 0) {
         otv += k.getText();
     }
     else if (getPower() == 1) {
-        otv += k.getText() + " * x";
+        otv += (k == Complex(Fraction(1, 1))? "": k.getText() + " * ") + "x";
     }
     else {
-        otv += k.getText() + " * x ^ " + QString::number(power);
+        otv += (k == Complex(Fraction(1, 1))? "": k.getText() + " * ") + "x ^ " + QString::number(power);
     }
     return otv;
+}
+
+Complex Monomial::getPointValue(const Complex& p)
+{
+    Complex otv = k;
+    for(int i = 0; i < power; ++i){
+        otv *= p;
+    }
+    return otv;
+
 }
 void Monomial::operator/=(Complex &c1)
 {

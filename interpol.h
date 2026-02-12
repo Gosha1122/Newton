@@ -11,6 +11,7 @@ struct Function{
     int start      = 0;
     int finish     = 0;
     Complex value = Complex();
+    QString getText();
 };
 
 std::ostream& operator<<(std::ostream& out, const Function& f);
@@ -34,10 +35,14 @@ public:
     void setN(int newN);
 
     Function getFunction(int first, int second);
+    Polynom *getPol() const;
+    QString getFunctionStr();
+
 private:
     int n = 0;
     QList<std::pair<Complex, Complex>> points;
     QMap<std::pair<int, int>, Function> functions;
+    Polynom* pol = nullptr;
 };
 
 #endif // INTERPOL_H

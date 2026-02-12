@@ -31,6 +31,8 @@ public:
 
     QString getText();
 
+    Complex getPointValue(const Complex& p);
+
 private:
     int power;
     Complex k;

@@ -238,9 +238,19 @@ QString Polynom::getText()
 {
     QString otv = "";
     for (int ind = 0; ind < monomials.size() - 1; ind++) {
-        otv += (monomials[ind].getText() + " + ");
+        QString t = monomials[ind].getText();
+        otv += (t != ""? (monomials[ind].getText() + " + "): "");
     }
     otv += monomials[monomials.size() - 1].getText();
+    return otv;
+}
+
+Complex Polynom::getPointValue(const Complex& p)
+{
+    Complex otv(Fraction(0, 1));
+    for(auto m: monomials){
+        otv += m.getPointValue(p);
+    }
     return otv;
 }
 

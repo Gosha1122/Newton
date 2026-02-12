@@ -1,8 +1,10 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include <QDebug>
 
 #include "lagrange.h"
 #include "interpol.h"
+#include "pointdialog.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -10,10 +12,12 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->addPointButton   , &QPushButton::clicked, this, &Widget::addPointButtonSlot);
-    connect(ui->clearButton      , &QPushButton::clicked, this, &Widget::clearPointButtonSlot);
-    connect(ui->deletePointButton, &QPushButton::clicked, this, &Widget::deletePointButtonSlot);
-    connect(ui->calculateButton  , &QPushButton::clicked, this, &Widget::calculateButtonSlot);
+    connect(ui->addPointButton       , &QPushButton::clicked, this, &Widget::addPointButtonSlot);
+    connect(ui->clearButton          , &QPushButton::clicked, this, &Widget::clearPointButtonSlot);
+    connect(ui->deletePointButton    , &QPushButton::clicked, this, &Widget::deletePointButtonSlot);
+    connect(ui->calculateButton      , &QPushButton::clicked, this, &Widget::calculateButtonSlot);
+    connect(ui->getPointValueButton  , &QPushButton::clicked, this, &Widget::getPointValueButtonSlot);
+
 }
 
 Widget::~Widget()
@@ -55,11 +59,37 @@ void Widget::clearPointButtonSlot()
 void Widget::calculateButtonSlot()
 {
     int count = ui->tablePoints->rowCount();
+    points.clear();
     for(int i = 0; i < count; i++){
         points.append(getPoint(i));
     }
-    Interpol inter(points);
-    ui->resultEdit->setPlainText(inter.calculate().getText());
+    if(inter != nullptr) delete inter;
+    inter = new Interpol(points);
+    QString tNew = inter->calculate().getText() + '\n';
+
+    if(lagr != nullptr) delete lagr;
+    lagr = new Lagrange(points);
+    Polynom lagrangeInterpol = lagr->calculate();
+
+    ui->resultEdit->setPlainText("Newton:\n" + inter->getFunctionStr() + tNew + "\nLagrange:\n" + lagr->getLString() + lagrangeInterpol.getText());
+}
+
+void Widget::getPointValueButtonSlot()
+{
+    PointDialog* d = new PointDialog();
+    connect(d, &PointDialog::setPointSignal, this, &Widget::setPointValueSlot);
+    int s = d->exec();
+
+    if(s == QDialog::Accepted){
+        QString text = ui->resultEdit->toPlainText();
+        calculateButtonSlot();
+        ui->resultEdit->setPlainText(text + '\n' + "Value point " + p.getText() + ": Newton : " + inter->getPol()->getPointValue(p).getText() + " | Lagrange : " + lagr->getPol()->getPointValue(p).getText());
+    }
+}
+
+void Widget::setPointValueSlot(const Complex& p)
+{
+    this->p = p;
 }
 
 std::pair<Complex, Complex> Widget::getPoint(int indexPoint)
@@ -112,7 +142,12 @@ std::pair<Complex, Complex> Widget::getPoint(int indexPoint)
                 imList = firstStr.split('/');
                 first = Complex(Fraction(imList.at(0).simplified().toLongLong(), imList.at(1).simplified().toLongLong()));
             }else{
-                first = Complex(Fraction(firstStr.simplified().toLongLong(), 1));
+                if(firstStr.indexOf('.') == -1){
+                    first = Complex(Fraction(firstStr.simplified().toLongLong(), 1));
+                }else{
+                    reList = firstStr.split('.');
+                    first = Complex(Fraction((reList.at(0) + reList.at(1)).simplified().toLongLong(), pow(10, reList.at(1).size())));
+                }
             }
         }
     }
@@ -160,7 +195,12 @@ std::pair<Complex, Complex> Widget::getPoint(int indexPoint)
                 imList = secondStr.split('/');
                 second = Complex(Fraction(imList.at(0).simplified().toLongLong(), imList.at(1).simplified().toLongLong()));
             }else{
-                second = Complex(Fraction(secondStr.simplified().toLongLong(), 1));
+                if(secondStr.indexOf('.') == -1){
+                    second = Complex(Fraction(secondStr.simplified().toLongLong(), 1));
+                }else{
+                    reList = secondStr.split('.');
+                    second = Complex(Fraction((reList.at(0) + reList.at(1)).simplified().toLongLong(), pow(10, reList.at(1).size())));
+                }
             }
         }
     }

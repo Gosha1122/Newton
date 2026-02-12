@@ -10,6 +10,7 @@ SOURCES += \
         lagrange.cpp \
         main.cpp \
         monomial.cpp \
+        pointdialog.cpp \
         polynom.cpp \
         widget.cpp
 
@@ -22,9 +23,11 @@ HEADERS += \
     lagrange.h \
     interpol.h \
     monomial.h \
+    pointdialog.h \
     polynom.h \
     interpol.h \
     widget.h
 
 FORMS += \
+    pointdialog.ui \
     widget.ui
